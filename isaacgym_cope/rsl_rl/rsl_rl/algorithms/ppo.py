@@ -87,12 +87,16 @@ class PPO:
     def train_mode(self):
         self.actor_critic.train()
 
-    def act(self, obs, critic_obs):
-        if self.actor_critic.is_recurrent:
+    #在当前时间步，根据环境的观察来决定要执行的动作，并且收集一些必要的数据（如价值、动作对数概率）用于后续的学习步骤
+    def act(self, obs, critic_obs): 
+        if self.actor_critic.is_recurrent: # 检查 Actor-Critic 模型是否是循环神经网络 (RNN) 模型。
             self.transition.hidden_states = self.actor_critic.get_hidden_states()
+            # 如果是 RNN，获取模型的当前隐藏状态，并存储在 transition 对象中
+
         # Compute the actions and values
         self.transition.actions = self.actor_critic.act(obs).detach()
-        self.transition.values = self.actor_critic.evaluate(critic_obs).detach()
+        # 调用 Actor-Critic 模型 (self.actor_critic) 的 act 方法，根据普通观察 (obs) 计算要执行的动作。
+        self.transition.values = self.actor_critic.evaluate(critic_obs).detach() #根据 critic 观察 (critic_obs) 计算当前状态的价值估计。
         self.transition.actions_log_prob = self.actor_critic.get_actions_log_prob(self.transition.actions).detach()
         self.transition.action_mean = self.actor_critic.action_mean.detach()
         self.transition.action_sigma = self.actor_critic.action_std.detach()
