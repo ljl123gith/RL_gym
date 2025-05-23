@@ -1,0 +1,11 @@
+prefix=/home/ljl/RL/isaacgym_copy/.conda
+exec_prefix=/home/ljl/RL/isaacgym_copy/.conda
+libdir=/home/ljl/RL/isaacgym_copy/.conda/lib
+includedir=/home/ljl/RL/isaacgym_copy/.conda/include
+
+Name: uuid
+Description: Universally unique id library
+Version: 2.32.1
+Requires:
+Cflags: -I${includedir}/uuid
+Libs: -L${libdir} -luuid
