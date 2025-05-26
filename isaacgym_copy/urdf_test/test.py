@@ -17,13 +17,14 @@ current_directory = os.getcwd()
 print("上层路径：", current_directory)
 
 # change path ??
-modelPath = os.path.join(current_directory, 'humanoid-gym','resources', 'robots', 'g1_description', 'urdf')
+modelPath = os.path.join(current_directory, 'humanoid-gym','resources', 'robots', 'XBot', 'urdf')
 # 获取 meshes 目录的绝对路径
 meshes_dir = os.path.join(os.path.dirname(modelPath), 'meshes')
 #modelPath = current_directory + '/resources/robots/g1_description/urdf/'
 # modelPath = current_directory + '/resources/robots/XBot/'
 # 移除多余的反斜杠
-URDF_FILENAME = "g1_23dof.urdf"
+#URDF_FILENAME = "g1_23dof.urdf"
+URDF_FILENAME = "XBot-L.urdf"
 
 urdf_path = os.path.join(modelPath, URDF_FILENAME)
 
